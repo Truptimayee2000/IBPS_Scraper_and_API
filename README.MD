@@ -23,7 +23,7 @@ This project automatically scrapes job listings from the IBPS Recruitment
 
 1. Clone the repository:
 ```bash
-    git clone <repository_url>
+    git clone https://github.com/Truptimayee2000/IBPS_Scraper_and_API.git
     cd IBPS_Scraper_and_API
 ```
 
