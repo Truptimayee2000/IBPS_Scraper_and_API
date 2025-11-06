@@ -67,5 +67,3 @@ This will:
 * Obtain token: /api/token/
 
 * Refresh token: /api/token/refresh/
-
-* Protected endpoint: /api/protected/
