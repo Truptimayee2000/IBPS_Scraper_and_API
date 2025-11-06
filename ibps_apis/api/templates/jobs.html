@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IBPS Job Listings</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="jobs">
+  <h2>IBPS Job Listings</h2>
+  <table border="1">
+    <tr>
+      <th>Job Title</th>
+      <th>Location</th>
+      <th>Publish Date</th>
+      <th>Link</th>
+    </tr>
+    {% for job in jobs %}
+    <tr>
+      <td>{{ job.Job_Title }}</td>
+      <td>{{ job.Location }}</td>
+      <td>{{ job.Publish_Date }}</td>
+      <td><a href="{{ job.Link }}" target="_blank">View</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  </div>
+</body>
+</html>
