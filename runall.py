@@ -8,7 +8,6 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ibps_api.settings'
 sys.path.append(os.path.join(os.getcwd(), 'ibps_apis'))
 
-# Step 0.5: Create admin user automatically (username + password only)
 print("🛠 Creating demo admin user (if not exists)...")
 create_user_script = """
 from django.contrib.auth.models import User

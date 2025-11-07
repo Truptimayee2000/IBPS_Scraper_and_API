@@ -17,12 +17,10 @@ def login_page(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
 
-        # Authenticate using Django User
         user = authenticate(username=username, password=password)
         if user is not None:
             request.session["user"] = username
 
-            # Generate JWT tokens properly
             refresh = RefreshToken.for_user(user)
             access_token = str(refresh.access_token)
             refresh_token = str(refresh)
@@ -37,7 +35,6 @@ def login_page(request):
 # 2. Jobs Page — Loads Scraped CSV into HTML
 # ===========================================
 def jobs_page(request):
-    # Construct path relative to project root
     base_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
     csv_path = os.path.join(base_dir, "ibps_jobs.csv")
 
@@ -55,7 +52,7 @@ def jobs_page(request):
 # ==================================
 # 3. JWT-Protected Example Endpoint
 # ==================================
-@api_view(['GET'])  # GET is typical for fetching data
+@api_view(['GET'])  
 @permission_classes([IsAuthenticated])
 def protected_api(request):
     return Response({

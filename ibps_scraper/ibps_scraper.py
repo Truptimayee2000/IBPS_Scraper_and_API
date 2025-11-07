@@ -16,7 +16,7 @@ def fetch_ibps_jobs():
     print("🔍 Launching Chrome browser...")
 
     chrome_options = Options()
-    chrome_options.add_argument("--headless")  # comment out to debug visually
+    chrome_options.add_argument("--headless") 
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
 
@@ -24,7 +24,6 @@ def fetch_ibps_jobs():
     driver.get(URL)
 
     try:
-        # Wait for recruitment section to load
         WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "div.elementor-widget-container"))
         )
@@ -34,11 +33,10 @@ def fetch_ibps_jobs():
         driver.quit()
         return
 
-    time.sleep(3)  # allow full content load
+    time.sleep(3) 
     soup = BeautifulSoup(driver.page_source, "html.parser")
     driver.quit()
 
-    # Find all links inside recruitment section
     content_divs = soup.select("div.elementor-widget-container")
     jobs = []
 
@@ -55,7 +53,7 @@ def fetch_ibps_jobs():
                 jobs.append({
                     "Job_Title": title,
                     "Location": "India",
-                    "Publish_Date": "N/A",  # IBPS does not show publish date on page
+                    "Publish_Date": "N/A",  
                     "Link": href
                 })
 
@@ -63,10 +61,8 @@ def fetch_ibps_jobs():
         print("⚠️ No job listings found.")
         return
 
-    # Remove duplicates
     df = pd.DataFrame(jobs).drop_duplicates(subset=["Link"])
 
-    # Save CSV
     output_path = os.path.join(os.getcwd(), "ibps_jobs.csv")
     df.to_csv(output_path, index=False, encoding="utf-8")
 
